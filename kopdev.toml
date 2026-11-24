@@ -1,5 +1,5 @@
 [plugin]
-name="kobrowser"
+name="KOBrowser"
 source_dir="src"
 version = "0.1.0"
 
