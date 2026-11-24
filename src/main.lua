@@ -10,45 +10,45 @@ local UIManager = require("ui/uimanager")
 local WidgetContainer = require("ui/widget/container/widgetcontainer")
 local _ = require("gettext")
 
-local Kobrowser = WidgetContainer:extend {
-    name = "kobrowser",
+local KOBrowser = WidgetContainer:extend {
+    name = "KOBrowser",
     is_doc_only = false,
 }
 
-function Kobrowser:onDispatcherRegisterActions()
-    Dispatcher:registerAction("kobrowser_action",
-        { category = "none", event = "Kobrowser", title = _("Kobrowser"), general = true, })
+function KOBrowser:onDispatcherRegisterActions()
+    Dispatcher:registerAction("KOBrowser_action",
+        { category = "none", event = "KOBrowser", title = _("KOBrowser"), general = true, })
 end
 
-function Kobrowser:init()
+function KOBrowser:init()
     self:onDispatcherRegisterActions()
     self.ui.menu:registerToMainMenu(self)
 end
 
-function Kobrowser:addToMainMenu(menu_items)
+function KOBrowser:addToMainMenu(menu_items)
     menu_items["kobrowser"] = {
-        text = _("Kobrowser"),
+        text = _("KOBrowser"),
         -- in which menu this should be appended
         sorting_hint = "more_tools",
         -- a callback when tapping
         callback = function()
             UIManager:show(InfoMessage:new {
-                text = _("Hello from Kobrowser"),
+                text = _("Hello from KOBrowser"),
             })
         end,
     }
 end
 
-function Kobrowser:onKobrowser()
+function KOBrowser:onKOBrowser()
     local popup = InfoMessage:new {
-        text = _("Kobrowser"),
+        text = _("KOBrowser"),
     }
     UIManager:show(popup)
 end
 
 -- KOReader will call this function when users choose to delete the plugin's settings.
-function Kobrowser:deletePluginSettings()
+function KOBrowser:deletePluginSettings()
     return true
 end
 
-return Kobrowser
+return KOBrowser
