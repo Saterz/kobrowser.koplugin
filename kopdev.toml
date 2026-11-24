@@ -1,0 +1,15 @@
+[plugin]
+name="kobrowser"
+source_dir="src"
+version = "0.1.0"
+
+[package]
+output_dir="dist"
+exclude=[
+    ".git",
+    "dist",
+    "kopdev.toml"
+]
+
+[deploy]
+exclude=[]
