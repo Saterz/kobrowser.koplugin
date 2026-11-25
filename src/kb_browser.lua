@@ -3,13 +3,15 @@ local Button = require("ui/widget/button")
 local FocusManager = require("ui/widget/focusmanager")
 local FrameContainer = require("ui/widget/container/framecontainer")
 local VerticalGroup = require("ui/widget/verticalgroup")
-local Blitbuffer = require("ffi/blitbuffer")
+local BlitBuffer = require("ffi/blitbuffer")
 local HorizontalGroup = require("ui/widget/horizontalgroup")
 local InputText = require("ui/widget/inputtext")
 local Size = require("ui/size")
 local Device = require("device")
-local _ = require("gettext")
 local Screen = Device.screen
+local _ = require("gettext")
+
+local SearchBar = require("ui/kb_searchbar")
 
 local Browser = FocusManager:extend {
     covers_fullscreen = true
@@ -23,7 +25,6 @@ function Browser:init()
         self.key_events.Close = { { Device.input.group.Back } }
     end
 
-
     local padding = Size.padding.default
     local border = Size.border.inputtext
 
@@ -33,16 +34,13 @@ function Browser:init()
         callback = function() self:onClose() end,
     }
 
-    self.address = InputText:new {
+    self.address = SearchBar:new {
         parent = self,
-        text = "",
-        hint = _("Search or enter URL"),
-        width = w - close:getSize().w - 2 * (padding + border),
-        padding = padding,
-        bordersize = border,
-        margin = 0,
-        focused = false,
-        enter_callback = function() self:onSubmitAddress() end
+        width = w - close:getSize().w,
+
+        callback = function(query)
+            self:onSubmitAddress(query)
+        end
     }
 
     local navbar = HorizontalGroup:new { self.address, close }
@@ -52,7 +50,7 @@ function Browser:init()
     self[1] = FrameContainer:new {
         width = w,
         height = h,
-        background = Blitbuffer.COLOR_WHITE,
+        background = BlitBuffer.COLOR_WHITE,
         bordersize = 0,
         padding = 0,
         VerticalGroup:new {
@@ -62,12 +60,12 @@ function Browser:init()
     }
 end
 
-function Browser:onSubmitAddress()
-    local url = self.address:getText():match("^%s*(.-)%s*$")
+---@param query string
+function Browser:onSubmitAddress(query)
+    local url = query:match("^%s*(.-)%s*$")
     if url == "" then return end
 
     self.url = url
-    self.address:onCloseKeyboard()
     self:onKeyboardClosed()
 end
 
@@ -87,7 +85,6 @@ function Browser:onShow()
 end
 
 function Browser:onClose()
-    self.address:onCloseKeyboard()
     UIManager:close(self, "ui")
     return true
 end
