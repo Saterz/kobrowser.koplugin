@@ -1,6 +1,6 @@
 # KOBrowser
 
-A fast and private web browser for KOReader.
+A fast, private and accessible web browser for KOReader.
 
 ## License
 
