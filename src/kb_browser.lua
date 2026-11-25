@@ -5,13 +5,13 @@ local FrameContainer = require("ui/widget/container/framecontainer")
 local VerticalGroup = require("ui/widget/verticalgroup")
 local BlitBuffer = require("ffi/blitbuffer")
 local HorizontalGroup = require("ui/widget/horizontalgroup")
-local InputText = require("ui/widget/inputtext")
 local Size = require("ui/size")
 local Device = require("device")
 local Screen = Device.screen
 local _ = require("gettext")
 
 local SearchBar = require("ui/kb_searchbar")
+local ToolbarButton = require("ui/kb_toolbar_button")
 
 local Browser = FocusManager:extend {
     covers_fullscreen = true
@@ -28,24 +28,27 @@ function Browser:init()
     local padding = Size.padding.default
     local border = Size.border.inputtext
 
-    local close = Button:new {
-        text = _("Close"),
+    local back = ToolbarButton:new { svg = "arrow-left", show_parent = self, enabled = false }
+    local forward = ToolbarButton:new { svg = "arrow-right", show_parent = self, enabled = false }
+    local reload = ToolbarButton:new { svg = "rotate-cw", show_parent = self, enabled = false }
+    local close = ToolbarButton:new {
+        svg = "x",
         show_parent = self,
         callback = function() self:onClose() end,
     }
 
     self.address = SearchBar:new {
         parent = self,
-        width = w - close:getSize().w,
+        width = w - back:getSize().w - forward:getSize().w - reload:getSize().w - close:getSize().w,
 
         callback = function(query)
             self:onSubmitAddress(query)
         end
     }
 
-    local navbar = HorizontalGroup:new { self.address, close }
+    local navbar = HorizontalGroup:new { back, forward, reload, self.address, close }
+    self.layout = { { back, forward, reload, self.address, close } }
 
-    self.layout = { { self.address, close } }
 
     self[1] = FrameContainer:new {
         width = w,

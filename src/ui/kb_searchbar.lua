@@ -3,7 +3,6 @@ local InputText = require("ui/widget/inputtext")
 local HorizontalGroup = require("ui/widget/horizontalgroup")
 local HorizontalSpan = require("ui/widget/horizontalspan")
 local Font = require("ui/font")
-local IconWidget = require("ui/widget/iconwidget")
 local BlitBuffer = require("ffi/blitbuffer")
 local Device = require("device")
 local Screen = Device.screen
