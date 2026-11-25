@@ -36,7 +36,7 @@ function Browser:init()
     self.address = InputText:new {
         parent = self,
         text = "",
-        hint = _("Enter URL"),
+        hint = _("Search or enter URL"),
         width = w - close:getSize().w - 2 * (padding + border),
         padding = padding,
         bordersize = border,
