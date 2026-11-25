@@ -31,7 +31,7 @@ function KOBrowser:addToMainMenu(menu_items)
     menu_items["kobrowser"] = {
         text = _("KOBrowser"),
         -- in which menu this should be appended
-        sorting_hint = "more_tools",
+        sorting_hint = "tools",
         -- a callback when tapping
         callback = function()
             self:onKOBrowser()
