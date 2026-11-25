@@ -8,6 +8,8 @@ local BlitBuffer = require("ffi/blitbuffer")
 local Device = require("device")
 local Screen = Device.screen
 
+local Icons = require("ui/kb_icons")
+
 local SearchBar = FrameContainer:extend {
     width = Screen:scaleBySize(300),
     placeholder = "Search or enter URL",
@@ -61,11 +63,7 @@ function SearchBar:init()
     self[1] = HorizontalGroup:new {
         align = "center",
 
-        IconWidget:new {
-            icon = "search",
-            width = icon_size,
-            height = icon_size,
-        },
+        Icons:new("search", icon_size),
 
         HorizontalSpan:new {
             width = spacing,
