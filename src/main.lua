@@ -10,6 +10,8 @@ local UIManager = require("ui/uimanager")
 local WidgetContainer = require("ui/widget/container/widgetcontainer")
 local _ = require("gettext")
 
+local Browser = require("kb_browser")
+
 local KOBrowser = WidgetContainer:extend {
     name = "KOBrowser",
     is_doc_only = false,
@@ -32,18 +34,13 @@ function KOBrowser:addToMainMenu(menu_items)
         sorting_hint = "more_tools",
         -- a callback when tapping
         callback = function()
-            UIManager:show(InfoMessage:new {
-                text = _("Hello from KOBrowser"),
-            })
+            self:onKOBrowser()
         end,
     }
 end
 
 function KOBrowser:onKOBrowser()
-    local popup = InfoMessage:new {
-        text = _("KOBrowser"),
-    }
-    UIManager:show(popup)
+    UIManager:show(Browser:new {}, "ui")
 end
 
 -- KOReader will call this function when users choose to delete the plugin's settings.
