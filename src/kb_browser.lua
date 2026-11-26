@@ -12,6 +12,7 @@ local _ = require("gettext")
 
 local SearchBar = require("ui/kb_searchbar")
 local ToolbarButton = require("ui/kb_toolbar_button")
+local WebViewport = require("ui/kb_web_viewport")
 
 local Browser = FocusManager:extend {
     covers_fullscreen = true
@@ -48,6 +49,12 @@ function Browser:init()
     }
 
     local navbar = HorizontalGroup:new { back, forward, reload, self.address, settings, close }
+
+    self.viewport = WebViewport:new {
+        width = w,
+        height = h,
+        show_parent = self
+    }
     self.layout = { { back, forward, reload, self.address, settings, close } }
 
 
@@ -60,6 +67,7 @@ function Browser:init()
         VerticalGroup:new {
             align = "left",
             navbar,
+            self.viewport,
         },
     }
 end
