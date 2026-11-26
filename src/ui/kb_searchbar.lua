@@ -26,7 +26,9 @@ function SearchBar:init()
     self.radius = Screen:scaleBySize(25)
     self.bordersize = border
     self.padding = padding
-    self.margin = 0
+    self.padding_top = Screen:scaleBySize(4)
+    self.padding_bottom = Screen:scaleBySize(4)
+    self.margin = Screen:scaleBySize(6)
     self.background = BlitBuffer.COLOR_WHITE
 
     self.input = InputText:new {
@@ -36,12 +38,13 @@ function SearchBar:init()
         hint = self.placeholder,
 
         width = self.width
+            - 2 * self.margin
             - 2 * padding
             - 2 * border
             - icon_size
             - spacing,
 
-        height = Screen:scaleBySize(28),
+        height = Screen:scaleBySize(0),
         face = Font:getFace("cfont", 20),
 
         bordersize = 0,

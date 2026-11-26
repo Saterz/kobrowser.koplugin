@@ -31,6 +31,7 @@ function Browser:init()
     local back = ToolbarButton:new { svg = "arrow-left", show_parent = self, enabled = false }
     local forward = ToolbarButton:new { svg = "arrow-right", show_parent = self, enabled = false }
     local reload = ToolbarButton:new { svg = "rotate-cw", show_parent = self, enabled = false }
+    local settings = ToolbarButton:new { svg = "settings", show_parent = self, enabled = false }
     local close = ToolbarButton:new {
         svg = "x",
         show_parent = self,
@@ -39,15 +40,15 @@ function Browser:init()
 
     self.address = SearchBar:new {
         parent = self,
-        width = w - back:getSize().w - forward:getSize().w - reload:getSize().w - close:getSize().w,
+        width = w - back:getSize().w - forward:getSize().w - reload:getSize().w - settings:getSize().w - close:getSize().w,
 
         callback = function(query)
             self:onSubmitAddress(query)
         end
     }
 
-    local navbar = HorizontalGroup:new { back, forward, reload, self.address, close }
-    self.layout = { { back, forward, reload, self.address, close } }
+    local navbar = HorizontalGroup:new { back, forward, reload, self.address, settings, close }
+    self.layout = { { back, forward, reload, self.address, settings, close } }
 
 
     self[1] = FrameContainer:new {

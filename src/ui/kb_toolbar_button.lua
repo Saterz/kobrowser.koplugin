@@ -7,6 +7,7 @@ local ToolbarButton = Button:extend {
     icon_width = Screen:scaleBySize(22),
     icon_height = Screen:scaleBySize(22),
     bordersize = 0,
+    padding_h = Screen:scaleBySize(12)
 }
 
 function ToolbarButton:init()
