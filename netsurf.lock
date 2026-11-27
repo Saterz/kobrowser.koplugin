@@ -1,0 +1,13 @@
+netsurf https://github.com/netsurf-browser/netsurf.git 170d89462442c286f80c0604f30e4c7f2a801265
+buildsystem https://github.com/netsurf-browser/buildsystem.git b38fe7146aa3af08881ba9d6817f19ee7abe4a86
+libwapcaplet https://github.com/netsurf-browser/libwapcaplet.git 74e49210e9c56381c1e60aea309dc80074a54ede
+libparserutils https://github.com/netsurf-browser/libparserutils.git c9971265064b194505c6cd398dbdef8788725de7
+libhubbub https://github.com/netsurf-browser/libhubbub.git 68989e60c786f1ee490db95c44769c368d135262
+libdom https://github.com/netsurf-browser/libdom.git e4150b65e4e77d6e028912c5cdae084b3a564c93
+libcss https://github.com/netsurf-browser/libcss.git 0c4f51901a152ae551987aabdb7881c4f55cdc08
+libnsgif https://github.com/netsurf-browser/libnsgif.git b9e3b0aadce374cce45c34feb55ad73a3381ff98
+libnsbmp https://github.com/netsurf-browser/libnsbmp.git 3406e7e0bfb5a8edc73af1cd4ae39553907514fb
+libnsutils https://github.com/netsurf-browser/libnsutils.git 4f0b88241304d97e10c363b81f3cf959404da82b
+libnspsl https://github.com/netsurf-browser/libnspsl.git fb372b56cc83b81143c677fee526c91c399596ae
+libnslog https://github.com/netsurf-browser/libnslog.git 6c3445f5e78cc13f4f524b66a4092936e77ef534
+nsgenbind https://github.com/netsurf-browser/nsgenbind.git bfd1f0ed6c27ffdd813c70ef919eec17d3439a38
